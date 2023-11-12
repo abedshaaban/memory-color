@@ -11,6 +11,27 @@ let level = 0;
 let patternToBe = [];
 let count = -1;
 
+// add event listeners to all buttons
+function addButtonEventListeners() {
+  for (let i = 0; i < pattern.length; i++) {
+    const id = pattern[i];
+    const btn = document.getElementById(pattern[i]);
+
+    btn.addEventListener("click", () => {
+      playAudio(`../sounds/${id}.mp3`);
+      if (level > 0 && count >= 0) {
+        if (checkToMatch(id, patternToBe, count)) {
+          count++;
+          setTimeout(() => {
+            moveLevelUp();
+          }, 1000);
+        } else {
+          youLose(level, patternToBe, count, levelTitle);
+        }
+      }
+    });
+  }
+}
 const levelTitle = document.getElementById("level-title");
 
 function moveLevelUp() {
@@ -24,67 +45,7 @@ function moveLevelUp() {
   patternToBe.push(toBeAdded);
 }
 
-// get buttons
-const greenBTN = document.getElementById("green");
-const redBTN = document.getElementById("red");
-const yellowBTN = document.getElementById("yellow");
-const blueBTN = document.getElementById("blue");
-
-greenBTN.addEventListener("click", () => {
-  playAudio("../sounds/green.mp3");
-  if (level > 0 && count >= 0) {
-    if (checkToMatch("green", patternToBe, count)) {
-      count++;
-      setTimeout(() => {
-        moveLevelUp();
-      }, 1000);
-    } else {
-      youLose(level, pattern, count, levelTitle);
-    }
-  }
-});
-
-redBTN.addEventListener("click", () => {
-  playAudio("../sounds/red.mp3");
-  if (level > 0 && count >= 0) {
-    if (checkToMatch("red", patternToBe, count)) {
-      count++;
-      setTimeout(() => {
-        moveLevelUp();
-      }, 1000);
-    } else {
-      youLose(level, pattern, count, levelTitle);
-    }
-  }
-});
-
-yellowBTN.addEventListener("click", () => {
-  playAudio("../sounds/yellow.mp3");
-  if (level > 0 && count >= 0) {
-    if (checkToMatch("yellow", patternToBe, count)) {
-      count++;
-      setTimeout(() => {
-        moveLevelUp();
-      }, 1000);
-    } else {
-      youLose(level, pattern, count, levelTitle);
-    }
-  }
-});
-
-blueBTN.addEventListener("click", () => {
-  playAudio("../sounds/blue.mp3");
-  if (level > 0 && count >= 0) {
-    if (checkToMatch("blue", patternToBe, count)) {
-      count++;
-      setTimeout(() => {
-        moveLevelUp();
-      }, 1000);
-    } else {
-      youLose(level, pattern, count, levelTitle);
-    }
-  }
-});
+addButtonEventListeners();
 
 window.addEventListener(
   "keydown",
