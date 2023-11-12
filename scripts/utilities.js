@@ -21,10 +21,3 @@ export function checkToMatch(color, pattern, count) {
   console.log(color === pattern[count]);
   return color === pattern[count];
 }
-
-export function youLose(level, pattern, count, levelTitle) {
-  level = 0;
-  pattern = [];
-  count = -1;
-  levelTitle.textContent = "You lost, refresh the page to play again.";
-}

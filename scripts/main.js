@@ -4,7 +4,6 @@ import {
   playAudio,
   playNext,
   checkToMatch,
-  youLose,
 } from "./utilities.js";
 
 let level = 0;
@@ -45,6 +44,13 @@ function moveLevelUp() {
   playNext(toBeAdded);
 
   patternToBe.push(toBeAdded);
+}
+
+export function youLose() {
+  level = 0;
+  patternToBe = [];
+  count = -1;
+  levelTitle.textContent = "Game Over, Press Any Key to Restart";
 }
 
 addButtonEventListeners();
