@@ -32,6 +32,7 @@ function addButtonEventListeners() {
     });
   }
 }
+
 const levelTitle = document.getElementById("level-title");
 
 function moveLevelUp() {
@@ -42,6 +43,7 @@ function moveLevelUp() {
   const toBeAdded = getRandomColor(pattern);
 
   playNext(toBeAdded);
+
   patternToBe.push(toBeAdded);
 }
 
@@ -51,6 +53,7 @@ window.addEventListener(
   "keydown",
   () => {
     if (level === 0) {
+      console.log("start game");
       moveLevelUp();
 
       count++;

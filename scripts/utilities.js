@@ -9,7 +9,8 @@ export function getRandomColor(pattern) {
 export function playNext(nextBtn) {
   const btn = document.getElementById(nextBtn);
 
-  btn.click();
+  playAudio(`../sounds/${nextBtn}.mp3`);
+
   btn.classList.add("pressed");
   setTimeout(() => {
     btn.classList.remove("pressed");
@@ -17,6 +18,7 @@ export function playNext(nextBtn) {
 }
 
 export function checkToMatch(color, pattern, count) {
+  console.log(color === pattern[count]);
   return color === pattern[count];
 }
 
