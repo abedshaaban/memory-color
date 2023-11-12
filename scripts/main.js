@@ -1,5 +1,5 @@
 import { pattern } from "./pattern.js";
-import { getRandomColor, playAudio } from "./utilities.js";
+import { getRandomColor, playAudio, playNext } from "./utilities.js";
 
 let level = 0;
 let patternToBe = [];
@@ -36,7 +36,10 @@ window.addEventListener(
 
       levelTitle.textContent = `level ${level}`;
 
-      patternToBe.push(getRandomColor(pattern));
+      const toBeAdded = getRandomColor(pattern);
+
+      playNext(toBeAdded);
+      patternToBe.push(toBeAdded);
     }
   },
   true

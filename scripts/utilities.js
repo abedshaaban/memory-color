@@ -5,3 +5,13 @@ export function playAudio(audioPath) {
 export function getRandomColor(pattern) {
   return pattern[Math.floor(Math.random() * pattern.length)];
 }
+
+export function playNext(nextBtn) {
+  const btn = document.getElementById(nextBtn);
+
+  btn.click();
+  btn.classList.add("pressed");
+  setTimeout(() => {
+    btn.classList.remove("pressed");
+  }, 300);
+}
