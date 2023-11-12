@@ -15,3 +15,7 @@ export function playNext(nextBtn) {
     btn.classList.remove("pressed");
   }, 300);
 }
+
+export function checkToMatch(color, pattern, count) {
+  return color === pattern[count];
+}

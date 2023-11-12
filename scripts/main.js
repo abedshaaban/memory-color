@@ -1,8 +1,14 @@
 import { pattern } from "./pattern.js";
-import { getRandomColor, playAudio, playNext } from "./utilities.js";
+import {
+  getRandomColor,
+  playAudio,
+  playNext,
+  checkToMatch,
+} from "./utilities.js";
 
 let level = 0;
 let patternToBe = [];
+let count = -1;
 
 const levelTitle = document.getElementById("level-title");
 
@@ -14,18 +20,34 @@ const blueBTN = document.getElementById("blue");
 
 greenBTN.addEventListener("click", () => {
   playAudio("../sounds/green.mp3");
+  if (level > 0 && count >= 0) {
+    checkToMatch("green", patternToBe, count);
+    count++;
+  }
 });
 
 redBTN.addEventListener("click", () => {
   playAudio("../sounds/red.mp3");
+  if (level > 0 && count >= 0) {
+    checkToMatch("red", patternToBe, count);
+    count++;
+  }
 });
 
 yellowBTN.addEventListener("click", () => {
   playAudio("../sounds/yellow.mp3");
+  if (level > 0 && count >= 0) {
+    checkToMatch("yellow", patternToBe, count);
+    count++;
+  }
 });
 
 blueBTN.addEventListener("click", () => {
   playAudio("../sounds/blue.mp3");
+  if (level > 0 && count >= 0) {
+    checkToMatch("blue", patternToBe, count);
+    count++;
+  }
 });
 
 window.addEventListener(
@@ -40,6 +62,7 @@ window.addEventListener(
 
       playNext(toBeAdded);
       patternToBe.push(toBeAdded);
+      count++;
     }
   },
   true
