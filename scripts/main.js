@@ -11,6 +11,7 @@ import {
 const levelTitle = document.getElementById("level-title");
 const toogleGameMode = document.getElementById("toogle-game-mode");
 const totalPointsSpan = document.getElementById("total-points");
+const timeRemainingSpan = document.getElementById("time-remaining");
 
 let level = 0;
 let patternToBe = [];
@@ -19,6 +20,8 @@ let isGameModePro = false;
 let proPattern = [];
 let proPattLength = 3;
 let score = 0;
+let timeRemaining = 0;
+let timeDownInterval;
 
 toogleGameMode.addEventListener("click", () => {
   const leaderboard = document.getElementById("leaderboard-for-pro");
@@ -45,34 +48,6 @@ toogleGameMode.addEventListener("click", () => {
   levelTitle.textContent = "Press Any Key to Start";
 });
 
-function playerMove(id, patternToBe, iteration) {
-  if (checkToMatch(iteration, patternToBe, id)) {
-    if (iteration === patternToBe.length - 1) {
-      moveLevelUp();
-    }
-
-    count++;
-  } else {
-    youLose();
-  }
-}
-
-function proPlayerMove(id, propatt, iteration) {
-  if (checkToMatch(iteration, proPattern, id)) {
-    if (iteration === proPattern.length - 1) {
-      setTimeout(() => {
-        proMoveLevelUp();
-      }, 1000);
-    }
-
-    totalPointsSpan.textContent = score += 1000;
-
-    count += 1;
-  } else {
-    youLose();
-  }
-}
-
 // add event listeners to all buttons
 function addButtonEventListeners() {
   for (let i = 0; i < pattern.length; i++) {
@@ -93,6 +68,18 @@ function addButtonEventListeners() {
   }
 }
 
+function playerMove(id, patternToBe, iteration) {
+  if (checkToMatch(iteration, patternToBe, id)) {
+    if (iteration === patternToBe.length - 1) {
+      moveLevelUp();
+    }
+
+    count++;
+  } else {
+    youLose();
+  }
+}
+
 function moveLevelUp() {
   setTimeout(() => {
     level++;
@@ -108,7 +95,36 @@ function moveLevelUp() {
   }, 1000);
 }
 
+function proPlayerMove(id, propatt, iteration) {
+  if (checkToMatch(iteration, proPattern, id)) {
+    if (iteration === proPattern.length - 1) {
+      setTimeout(() => {
+        proMoveLevelUp();
+      }, 1000);
+    }
+
+    totalPointsSpan.textContent = score += 1000;
+
+    count += 1;
+  } else {
+    youLose();
+  }
+}
+
+function startCountDown() {
+  timeDownInterval = setInterval(() => {
+    timeRemainingSpan.textContent = timeRemaining = timeRemaining - 1;
+
+    if (timeRemaining <= 0) {
+      clearInterval(timeDownInterval);
+      youLose();
+    }
+  }, 1000);
+}
+
 function proMoveLevelUp() {
+  clearInterval(timeDownInterval);
+
   level++;
   count = 0;
 
@@ -121,6 +137,8 @@ function proMoveLevelUp() {
 
   console.log(proPattern);
   proPattLength += 3;
+  timeRemaining += 6;
+  startCountDown();
 }
 
 export function youLose() {
@@ -129,6 +147,7 @@ export function youLose() {
   count = -1;
   proPattLength = 3;
   if (isGameModePro) {
+    clearInterval(timeDownInterval);
     levelTitle.innerHTML = `<div>Game Over, Press Any Key to Restart</div> 
     <div style="margin-top:10px; text-decoration:underline" >Score: ${score}</div>`;
   } else {
