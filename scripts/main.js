@@ -31,7 +31,7 @@ function addButtonEventListeners() {
     const btn = document.getElementById(id);
 
     btn.addEventListener("click", () => {
-      playAudio(`../sounds/${id}.mp3`);
+      playAudio(`../public/sounds/${id}.mp3`);
       if (level > 0 && count >= 0) {
         playerMove(id, patternToBe, count);
       }
@@ -73,7 +73,6 @@ window.addEventListener(
   "keydown",
   () => {
     if (level === 0) {
-      console.log("start game");
       moveLevelUp();
     }
   },

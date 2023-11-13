@@ -9,7 +9,7 @@ export function getRandomColor(pattern) {
 export function playNext(nextBtn) {
   const btn = document.getElementById(nextBtn);
 
-  playAudio(`../sounds/${nextBtn}.mp3`);
+  playAudio(`../public/sounds/${nextBtn}.mp3`);
 
   btn.classList.add("pressed");
   setTimeout(() => {
