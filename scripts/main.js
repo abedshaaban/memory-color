@@ -128,7 +128,12 @@ export function youLose() {
   patternToBe = [];
   count = -1;
   proPattLength = 3;
-  levelTitle.textContent = "Game Over, Press Any Key to Restart";
+  if (isGameModePro) {
+    levelTitle.innerHTML = `<div>Game Over, Press Any Key to Restart</div> 
+    <div style="margin-top:10px; text-decoration:underline" >Score: ${score}</div>`;
+  } else {
+    levelTitle.textContent = "Game Over, Press Any Key to Restart";
+  }
   totalPointsSpan.textContent = score = 0;
 
   const btn = document.getElementsByTagName("body")[0];
