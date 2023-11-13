@@ -59,6 +59,12 @@ export function youLose() {
   patternToBe = [];
   count = -1;
   levelTitle.textContent = "Game Over, Press Any Key to Restart";
+  const btn = document.getElementsByTagName("body")[0];
+
+  btn.classList.add("game-over");
+  setTimeout(() => {
+    btn.classList.remove("game-over");
+  }, 300);
 }
 
 addButtonEventListeners();
