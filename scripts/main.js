@@ -10,6 +10,7 @@ import {
 
 const levelTitle = document.getElementById("level-title");
 const toogleGameMode = document.getElementById("toogle-game-mode");
+const totalPointsSpan = document.getElementById("total-points");
 
 let level = 0;
 let patternToBe = [];
@@ -17,6 +18,7 @@ let count = -1;
 let isGameModePro = false;
 let proPattern = [];
 let proPattLength = 3;
+let score = 0;
 
 toogleGameMode.addEventListener("click", () => {
   const leaderboard = document.getElementById("leaderboard-for-pro");
@@ -62,6 +64,8 @@ function proPlayerMove(id, propatt, iteration) {
         proMoveLevelUp();
       }, 1000);
     }
+
+    totalPointsSpan.textContent = score += 1000;
 
     count += 1;
   } else {
@@ -125,6 +129,8 @@ export function youLose() {
   count = -1;
   proPattLength = 3;
   levelTitle.textContent = "Game Over, Press Any Key to Restart";
+  totalPointsSpan.textContent = score = 0;
+
   const btn = document.getElementsByTagName("body")[0];
 
   btn.classList.add("game-over");
