@@ -12,14 +12,24 @@ const toogleGameMode = document.getElementById("toogle-game-mode");
 let level = 0;
 let patternToBe = [];
 let count = -1;
+let isGameModePro = false;
 
 toogleGameMode.addEventListener("click", () => {
+  const leaderboard = document.getElementById("leaderboard-for-pro");
+  const header = document.getElementsByTagName("header")[0];
+
   if (toogleGameMode.classList.contains("toogle-btn-pro")) {
     toogleGameMode.classList.remove("toogle-btn-pro");
     toogleGameMode.textContent = "🤓 Noob";
+    isGameModePro = false;
+    leaderboard.style.display = "none";
+    header.style.justifyContent = "end";
   } else {
     toogleGameMode.classList.add("toogle-btn-pro");
     toogleGameMode.textContent = "😈 Pro";
+    isGameModePro = true;
+    leaderboard.style.display = "flex";
+    header.style.justifyContent = "space-between";
   }
 });
 

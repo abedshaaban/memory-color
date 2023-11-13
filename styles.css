@@ -11,6 +11,16 @@ header {
   align-items: center;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .toogle-btn {
   font-size: 15px;
   font-weight: 600;
@@ -34,6 +44,12 @@ header {
 
 .toogle-btn:hover {
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+.leaderboard {
+  font-family: sans-serif;
+  display: none;
+  color: white;
 }
 
 #level-title {
