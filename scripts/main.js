@@ -5,6 +5,7 @@ import {
   playNext,
   checkToMatch,
   getProRandomPattern,
+  playNextPro,
 } from "./utilities.js";
 
 const levelTitle = document.getElementById("level-title");
@@ -14,6 +15,7 @@ let level = 0;
 let patternToBe = [];
 let count = -1;
 let isGameModePro = false;
+let proPattern = [];
 
 toogleGameMode.addEventListener("click", () => {
   const leaderboard = document.getElementById("leaderboard-for-pro");
@@ -88,12 +90,9 @@ function proMoveLevelUp() {
 
   levelTitle.textContent = `level ${level}`;
 
-  const toBeAdded = getProRandomPattern(pattern, 6);
-  // console.log(toBeAdded);
+  proPattern = getProRandomPattern(pattern, 6);
 
-  // playNext(toBeAdded);
-
-  // patternToBe.push(toBeAdded);
+  playNextPro(proPattern);
 }
 
 export function youLose() {

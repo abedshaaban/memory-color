@@ -35,6 +35,14 @@ export function playNext(nextBtn) {
   }, 300);
 }
 
+export function playNextPro(nextBtnList) {
+  for (let i = 0; i < nextBtnList.length; i++) {
+    setTimeout(() => {
+      playNext(nextBtnList[i]);
+    }, i * 600);
+  }
+}
+
 export function checkToMatch(count, gamePattern, color) {
   return color === gamePattern[count];
 }
