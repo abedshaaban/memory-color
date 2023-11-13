@@ -8,6 +8,7 @@ import {
   playNextPro,
 } from "./utilities.js";
 
+const bodyTag = document.getElementsByTagName("body")[0];
 const levelTitle = document.getElementById("level-title");
 const toogleGameMode = document.getElementById("toogle-game-mode");
 const totalPointsSpan = document.getElementById("total-points");
@@ -22,6 +23,8 @@ let proPattLength = 3;
 let score = 0;
 let timeRemaining = 0;
 let timeDownInterval;
+let bodyColorH = 0;
+let BodyColorInterval;
 
 toogleGameMode.addEventListener("click", () => {
   const leaderboard = document.getElementById("leaderboard-for-pro");
@@ -124,6 +127,7 @@ function startCountDown() {
 
 function proMoveLevelUp() {
   clearInterval(timeDownInterval);
+  clearInterval(BodyColorInterval);
 
   level++;
   count = 0;
@@ -139,15 +143,28 @@ function proMoveLevelUp() {
   proPattLength += 3;
   timeRemaining += 6;
   startCountDown();
+  ColorChanger();
 }
 
-export function youLose() {
+function ColorChanger() {
+  BodyColorInterval = setInterval(() => {
+    if (bodyColorH > 360) {
+      bodyColorH = 0;
+    }
+
+    bodyTag.style.backgroundColor = `hsla(${++bodyColorH}deg, 67%, 39%, 100%)`;
+  }, 50);
+}
+
+function youLose() {
   level = 0;
   patternToBe = [];
   count = -1;
   proPattLength = 3;
+  timeRemaining = 0;
   if (isGameModePro) {
     clearInterval(timeDownInterval);
+    clearInterval(BodyColorInterval);
     levelTitle.innerHTML = `<div>Game Over, Press Any Key to Restart</div> 
     <div style="margin-top:10px; text-decoration:underline" >Score: ${score}</div>`;
   } else {
@@ -155,11 +172,9 @@ export function youLose() {
   }
   totalPointsSpan.textContent = score = 0;
 
-  const btn = document.getElementsByTagName("body")[0];
-
-  btn.classList.add("game-over");
+  bodyTag.classList.add("game-over");
   setTimeout(() => {
-    btn.classList.remove("game-over");
+    bodyTag.classList.remove("game-over");
   }, 300);
 }
 
