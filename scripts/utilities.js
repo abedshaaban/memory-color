@@ -17,7 +17,10 @@ export function playNext(nextBtn) {
   }, 300);
 }
 
-export function checkToMatch(color, pattern, count) {
-  console.log(color === pattern[count]);
-  return color === pattern[count];
+export function checkToMatch(count, gamePattern, color) {
+  // add for loop to + remove old event listeners
+  console.log("color", color);
+  console.log("game color", gamePattern[count]);
+  console.log("count", count);
+  return color === gamePattern[count];
 }
