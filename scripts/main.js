@@ -31,6 +31,12 @@ toogleGameMode.addEventListener("click", () => {
     leaderboard.style.display = "flex";
     header.style.justifyContent = "space-between";
   }
+
+  level = 0;
+  patternToBe = [];
+  count = -1;
+
+  levelTitle.textContent = "Press Any Key to Start";
 });
 
 function playerMove(id, patternToBe, iteration) {
@@ -75,6 +81,19 @@ function moveLevelUp() {
   }, 1000);
 }
 
+function proMoveLevelUp() {
+  level++;
+  count = 0;
+
+  levelTitle.textContent = `level ${level}`;
+
+  const toBeAdded = getRandomColor(pattern);
+
+  playNext(toBeAdded);
+
+  patternToBe.push(toBeAdded);
+}
+
 export function youLose() {
   level = 0;
   patternToBe = [];
@@ -94,7 +113,11 @@ window.addEventListener(
   "keydown",
   () => {
     if (level === 0) {
-      moveLevelUp();
+      if (isGameModePro) {
+        proMoveLevelUp();
+      } else {
+        moveLevelUp();
+      }
     }
   },
   true
