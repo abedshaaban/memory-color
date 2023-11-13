@@ -19,11 +19,14 @@ header {
   border: none;
   cursor: pointer;
   transition-duration: 0.3s;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.5);
 }
 
 .toogle-btn-pro {
   color: white;
   background-color: rgb(115, 47, 255) !important;
+  box-shadow: 0 0 3px 3px rgb(115, 47, 255, 0.5) !important;
 }
 .toogle-btn-pro:hover {
   background-color: rgba(115, 47, 255, 0.3) !important;

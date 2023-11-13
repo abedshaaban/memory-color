@@ -7,10 +7,21 @@ import {
 } from "./utilities.js";
 
 const levelTitle = document.getElementById("level-title");
+const toogleGameMode = document.getElementById("toogle-game-mode");
 
 let level = 0;
 let patternToBe = [];
 let count = -1;
+
+toogleGameMode.addEventListener("click", () => {
+  if (toogleGameMode.classList.contains("toogle-btn-pro")) {
+    toogleGameMode.classList.remove("toogle-btn-pro");
+    toogleGameMode.textContent = "🤓 Noob";
+  } else {
+    toogleGameMode.classList.add("toogle-btn-pro");
+    toogleGameMode.textContent = "😈 Pro";
+  }
+});
 
 function playerMove(id, patternToBe, iteration) {
   if (checkToMatch(iteration, patternToBe, id)) {
