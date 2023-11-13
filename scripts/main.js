@@ -4,6 +4,7 @@ import {
   playAudio,
   playNext,
   checkToMatch,
+  getProRandomPattern,
 } from "./utilities.js";
 
 const levelTitle = document.getElementById("level-title");
@@ -87,11 +88,12 @@ function proMoveLevelUp() {
 
   levelTitle.textContent = `level ${level}`;
 
-  const toBeAdded = getRandomColor(pattern);
+  const toBeAdded = getProRandomPattern(pattern, 6);
+  // console.log(toBeAdded);
 
-  playNext(toBeAdded);
+  // playNext(toBeAdded);
 
-  patternToBe.push(toBeAdded);
+  // patternToBe.push(toBeAdded);
 }
 
 export function youLose() {
