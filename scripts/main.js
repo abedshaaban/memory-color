@@ -16,6 +16,7 @@ let patternToBe = [];
 let count = -1;
 let isGameModePro = false;
 let proPattern = [];
+let proPattLength = 3;
 
 toogleGameMode.addEventListener("click", () => {
   const leaderboard = document.getElementById("leaderboard-for-pro");
@@ -54,6 +55,20 @@ function playerMove(id, patternToBe, iteration) {
   }
 }
 
+function proPlayerMove(id, propatt, iteration) {
+  if (checkToMatch(iteration, proPattern, id)) {
+    if (iteration === proPattern.length - 1) {
+      setTimeout(() => {
+        proMoveLevelUp();
+      }, 1000);
+    }
+
+    count += 1;
+  } else {
+    youLose();
+  }
+}
+
 // add event listeners to all buttons
 function addButtonEventListeners() {
   for (let i = 0; i < pattern.length; i++) {
@@ -61,9 +76,14 @@ function addButtonEventListeners() {
     const btn = document.getElementById(id);
 
     btn.addEventListener("click", () => {
-      playAudio(`../public/sounds/${id}.mp3`);
       if (level > 0 && count >= 0) {
-        playerMove(id, patternToBe, count);
+        playAudio(`../public/sounds/${id}.mp3`);
+
+        if (isGameModePro) {
+          proPlayerMove(id, proPattern, count);
+        } else {
+          playerMove(id, patternToBe, count);
+        }
       }
     });
   }
@@ -90,15 +110,20 @@ function proMoveLevelUp() {
 
   levelTitle.textContent = `level ${level}`;
 
-  proPattern = getProRandomPattern(pattern, 6);
+  proPattern = [];
+  proPattern = getProRandomPattern(pattern, proPattLength);
 
   playNextPro(proPattern);
+
+  console.log(proPattern);
+  proPattLength += 3;
 }
 
 export function youLose() {
   level = 0;
   patternToBe = [];
   count = -1;
+  proPattLength = 3;
   levelTitle.textContent = "Game Over, Press Any Key to Restart";
   const btn = document.getElementsByTagName("body")[0];
 
