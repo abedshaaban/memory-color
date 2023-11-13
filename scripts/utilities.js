@@ -14,7 +14,7 @@ export function getProRandomPattern(patt, length) {
     const color = pattern[Math.floor(Math.random() * pattern.length)];
 
     if (i >= 2 && color === proPattern[i - 1] && color === proPattern[i - 2]) {
-      const shortPattern = pattern?.remove(color);
+      const shortPattern = [...patt]?.remove(color);
       proPattern.push(shortPattern[Math.floor(Math.random() * pattern.length)]);
     } else {
       proPattern.push(color);
