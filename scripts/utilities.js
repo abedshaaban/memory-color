@@ -18,9 +18,5 @@ export function playNext(nextBtn) {
 }
 
 export function checkToMatch(count, gamePattern, color) {
-  // add for loop to + remove old event listeners
-  console.log("color", color);
-  console.log("game color", gamePattern[count]);
-  console.log("count", count);
   return color === gamePattern[count];
 }

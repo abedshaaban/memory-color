@@ -6,24 +6,21 @@ import {
   checkToMatch,
 } from "./utilities.js";
 
+const levelTitle = document.getElementById("level-title");
+
 let level = 0;
 let patternToBe = [];
 let count = -1;
 
-function playerMove(id, patternToBe, iteration, level) {
+function playerMove(id, patternToBe, iteration) {
   if (checkToMatch(iteration, patternToBe, id)) {
     if (iteration === patternToBe.length - 1) {
-      setTimeout(() => {
-        moveLevelUp();
-        console.log("level up");
-      }, 1000);
+      moveLevelUp();
     }
 
     count++;
-
-    // console.log("great");
   } else {
-    youLose(level, patternToBe, iteration, levelTitle);
+    youLose();
   }
 }
 
@@ -36,25 +33,25 @@ function addButtonEventListeners() {
     btn.addEventListener("click", () => {
       playAudio(`../sounds/${id}.mp3`);
       if (level > 0 && count >= 0) {
-        playerMove(id, patternToBe, count, level);
+        playerMove(id, patternToBe, count);
       }
     });
   }
 }
 
-const levelTitle = document.getElementById("level-title");
-
 function moveLevelUp() {
-  level++;
-  count = 0;
+  setTimeout(() => {
+    level++;
+    count = 0;
 
-  levelTitle.textContent = `level ${level}`;
+    levelTitle.textContent = `level ${level}`;
 
-  const toBeAdded = getRandomColor(pattern);
+    const toBeAdded = getRandomColor(pattern);
 
-  playNext(toBeAdded);
+    playNext(toBeAdded);
 
-  patternToBe.push(toBeAdded);
+    patternToBe.push(toBeAdded);
+  }, 1000);
 }
 
 export function youLose() {
