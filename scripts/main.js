@@ -61,7 +61,7 @@ function addButtonEventListeners() {
 
     btn.addEventListener("click", () => {
       if (level > 0 && count >= 0) {
-        playAudio(`../public/sounds/${id}.mp3`);
+        playAudio(`../assets/sounds/${id}.mp3`);
 
         if (isGameModePro) {
           proPlayerMove(id, proPattern, count);
