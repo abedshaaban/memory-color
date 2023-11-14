@@ -27,7 +27,7 @@ export function getProRandomPattern(patt, length) {
 export function playNext(nextBtn) {
   const btn = document.getElementById(nextBtn);
 
-  playAudio(`../assets/sounds/${nextBtn}.mp3`);
+  playAudio(`./assets/sounds/${nextBtn}.mp3`);
 
   btn.classList.add("pressed");
   setTimeout(() => {
