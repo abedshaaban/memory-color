@@ -36,12 +36,14 @@ toogleGameMode.addEventListener("click", () => {
     isGameModePro = false;
     leaderboard.style.display = "none";
     header.style.justifyContent = "end";
+    bodyTag.style.backgroundColor = `#011f3f`;
   } else {
     toogleGameMode.classList.add("toogle-btn-pro");
     toogleGameMode.textContent = "😈 Pro";
     isGameModePro = true;
     leaderboard.style.display = "flex";
     header.style.justifyContent = "space-between";
+    bodyTag.style.backgroundColor = `#9e0057`;
   }
 
   level = 0;
